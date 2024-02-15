@@ -1,4 +1,4 @@
-# Source-finding task using PyBDSF
+# Source-finding task using PyBDSF for CANFAR
 
 This task will run the source-finder PyBDSF on a LOFAR image from the LoTSS DR2 survey.
 
