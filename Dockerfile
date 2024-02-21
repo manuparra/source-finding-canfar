@@ -23,20 +23,26 @@ ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}/usr/local/lib
 ENV PYTHONPATH=${PYTHONPATH}:/opt
 
 COPY config/nsswitch.conf /etc
+RUN mkdir /config
+COPY config /config
+RUN ["chmod", "a+r", "/config"]
+RUN ["chmod", "a+x", "/config/addcontent.sh"]
+
+RUN mkdir /scripts
+COPY scripts /scripts
 
 
 USER $NB_UID
 
 ENV HOME=/arc/home/$NB_USER \
-	NB_USER=$NB_USER \
-	NB_UID=$NB_UID \
-	NB_GID=$NB_GID \
-	LC_ALL=en_US.UTF-8 \
-	LANG=en_US.UTF-8
+        NB_USER=$NB_USER \
+        NB_UID=$NB_UID \
+        NB_GID=$NB_GID \
+        LC_ALL=en_US.UTF-8 \
+        LANG=en_US.UTF-8
 
-COPY ./scripts/ $HOME/scripts
+
 
 #RUN scripts/fix-permissions $HOME/scripts
 
 WORKDIR $HOME
-
