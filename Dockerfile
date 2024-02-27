@@ -45,4 +45,7 @@ ENV HOME=/arc/home/$NB_USER \
 
 #RUN scripts/fix-permissions $HOME/scripts
 
-WORKDIR $HOME
+WORKDIR /scripts
+
+ENTRYPOINT ["./pipeline.sh"]
+
